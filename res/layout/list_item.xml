@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_bg"
+    android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="code :" />
+
+    <TextView
+        android:id="@+id/code_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/code"
+        android:layout_alignBottom="@+id/code"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/code"
+        android:text="DG-25" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/code_val"
+        android:layout_alignBottom="@+id/code_val"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/code_val"
+        android:text="Description :" />
+
+    <TextView
+        android:id="@+id/desc_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/desc"
+        android:layout_alignBottom="@+id/desc"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/desc"
+        android:text="desc values" />
+
+    <TextView
+        android:id="@+id/id1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/code"
+        android:layout_marginTop="15dp"
+        android:text="ID1 :" />
+
+    <TextView
+        android:id="@+id/id1_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id1"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/code"
+        android:text="id 1 value" />
+
+    <TextView
+        android:id="@+id/id2_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id2"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/id2"
+        android:text="id 2 value" />
+
+    <TextView
+        android:id="@+id/length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/id1"
+        android:layout_marginTop="14dp"
+        android:text="Length :" />
+
+    <TextView
+        android:id="@+id/len_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/length"
+        android:layout_alignBottom="@+id/length"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/length"
+        android:text="Length value" />
+
+    <TextView
+        android:id="@+id/price_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/len_val"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/len_val"
+        android:text="Price Value :" />
+
+    <TextView
+        android:id="@+id/priceval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/price_val"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/price_val"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/glass_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/length"
+        android:layout_marginTop="15dp"
+        android:text="Glass Size :" />
+
+    <TextView
+        android:id="@+id/glass_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/glass_size"
+        android:layout_alignBottom="@+id/glass_size"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/glass_size"
+        android:text="Glass value" />
+
+    <TextView
+        android:id="@+id/id1_id2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/glass_val"
+        android:layout_alignBottom="@+id/glass_val"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/glass_val"
+        android:text="ID1_ID2 :" />
+
+    <TextView
+        android:id="@+id/id1_id2_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/id1_id2"
+        android:layout_alignBottom="@+id/id1_id2"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/id1_id2"
+        android:text="ID1_ID2 value" />
+
+    <TextView
+        android:id="@+id/id2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/length"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/id1_val"
+        android:text="ID2 :" />
+
+</RelativeLayout>
