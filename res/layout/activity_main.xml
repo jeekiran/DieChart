@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/sticker_all_button"
             android:padding="10dp"
-            android:text="@string/update_records" />
+            android:text="@string/update_records"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/button2"
@@ -31,7 +32,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/sticker_all_button"
             android:padding="10dp"
-            android:text="@string/show_records" />
+            android:text="@string/show_records"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout

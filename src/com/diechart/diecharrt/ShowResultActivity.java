@@ -12,16 +12,21 @@ import com.diechart.adapter.ListAdapter;
 import com.diechart.database.DatabaseHandler;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-public class ShowResultActivity extends Activity implements OnClickListener {
+public class ShowResultActivity extends BaseActivity implements OnClickListener {
+
 	ListAdapter listAdapter;
 	ListView expListView;
 	HashMap<String, List<String>> listDataHeader;
@@ -81,6 +86,10 @@ public class ShowResultActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.button1:
+			InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+			inputManager.hideSoftInputFromWindow(getCurrentFocus()
+					.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 			String search_key = search_field.getText().toString();
 			if (search_key.length() == 0) {
 				listAdapter = new ListAdapter(this, list);
@@ -97,6 +106,19 @@ public class ShowResultActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		getMenuInflater().inflate(R.menu.main, menu);
+		return false;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onMenuItemSelected(featureId, item);
 	}
 
 	private void searchFromJson(String search_key) {

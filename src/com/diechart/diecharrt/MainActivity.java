@@ -14,19 +14,30 @@ import org.json.JSONArray;
 
 import com.diechart.database.DatabaseHandler;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.AvoidXfermode;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends BaseActivity implements OnClickListener {
+
+	private ProgressDialog progress;
+	final int totalProgressTime = 100;
 
 	@Override
 	protected void onDestroy() {
@@ -64,9 +75,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-		getActionBar().setCustomView(R.layout.actionbar);
+		// setContentView(R.layout.activity_main);
 
 		pull_but = (Button) findViewById(R.id.button1);
 		show_records = (Button) findViewById(R.id.button2);
@@ -79,7 +88,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return false;
 	}
 
 	@Override
@@ -87,8 +96,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.button1:
-			new pullJson()
-					.execute("http://nasihere-001-site5.smarterasp.net/api/Server");
+			if (isNetworkAvailable(this)) {
+				progress = new ProgressDialog(this);
+				progress.setMessage("Downloading Records  ");
+				progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+				progress.setIndeterminate(false);
+				progress.setCanceledOnTouchOutside(false);
+				
+
+				new pullJson()
+						.execute("http://nasihere-001-site5.smarterasp.net/api/Server");
+
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Network not available to perform this task!",
+						Toast.LENGTH_LONG).show();
+				return;
+			}
 
 			break;
 		case R.id.button2:
@@ -117,8 +141,46 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	class pullJson extends AsyncTask<String, Integer, String> {
 
+		private int myProgressCount;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			// super.onPreExecute();
+			progress.setProgress(0);
+			myProgressCount = 0;
+			progress.show();
+
+		}
+
+		@Override
+		protected void onProgressUpdate(final Integer... values) {
+			// TODO Auto-generated method stub
+			if (progress != null) {
+				new Handler().post(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						progress.setProgress(values[0]);
+
+					}
+				});
+				// progress.setProgress(values[0]);
+			}
+		}
+
 		@Override
 		protected String doInBackground(String... uri) {
+
+			if (progress != null) {
+				while (myProgressCount < 100) {
+					myProgressCount++;
+
+					publishProgress(myProgressCount);
+					SystemClock.sleep(30);
+				}
+			}
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpResponse response;
 			String responseString = null;
@@ -148,7 +210,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			// super.onPostExecute(result);
 			// Do anything with response..
 			// System.out.println(result);
-			storeData(result);
+			if (progress != null) {
+				progress.dismiss();
+				storeData(result);
+			}
+
 		}
 	}
 
@@ -156,13 +222,32 @@ public class MainActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 		if (db.insertRecords(result)) {
-			Toast.makeText(getApplicationContext(), "Update successfull!",
+			Toast.makeText(getApplicationContext(), "Update success!",
 					Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(getApplicationContext(), "Update failed!",
 					Toast.LENGTH_LONG).show();
 		}
 
+	}
+
+	public static boolean isNetworkAvailable(Context context) {
+		ConnectivityManager connectivity = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		if (connectivity != null) {
+			NetworkInfo[] info = connectivity.getAllNetworkInfo();
+
+			if (info != null) {
+				for (int i = 0; i < info.length; i++) {
+					Log.i("Class", info[i].getState().toString());
+					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 }

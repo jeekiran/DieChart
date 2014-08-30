@@ -6,22 +6,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp" >
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10" >
+            android:background="@drawable/textview_bg"
+            android:ems="10"
+            android:hint="Search keys"
+            android:padding="10dp" >
         </EditText>
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="@string/search" />
+            android:background="@drawable/sticker_all_button"
+            android:padding="10dp"
+            android:text="@string/search"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <ListView

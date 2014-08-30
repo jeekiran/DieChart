@@ -7,5 +7,6 @@
     <string name="update_records">Update Records</string>
     <string name="show_records">Show Records</string>
     <string name="search">Search</string>
+    <string name="clear">Clear Records</string>
 
 </resources>
