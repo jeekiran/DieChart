@@ -16,8 +16,10 @@ import com.diechart.database.DatabaseHandler;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.AvoidXfermode;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +28,36 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+	}
+
 	private Button pull_but;
 	private Button show_records;
 
@@ -33,6 +65,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+		getActionBar().setCustomView(R.layout.actionbar);
+
 		pull_but = (Button) findViewById(R.id.button1);
 		show_records = (Button) findViewById(R.id.button2);
 		show_records.setOnClickListener(this);
@@ -68,7 +103,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private void showRecord() {
 		// TODO Auto-generated method stub
-		
+
 		Intent intent = new Intent(MainActivity.this, ShowResultActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 

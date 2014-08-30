@@ -48,7 +48,7 @@ public class ListAdapter extends ArrayAdapter<JSONObject> {
 		View v = convertView;
 		if (v == null) {
 			holder = new ViewHolder();
-			v = inflater.inflate(R.layout.list_item, null);
+			v = inflater.inflate(R.layout.list_item1, null);
 			holder.setCode((TextView) v.findViewById(R.id.code_val));
 			holder.setDescription((TextView) v.findViewById(R.id.desc_val));
 			holder.setId1((TextView) v.findViewById(R.id.id1_val));
